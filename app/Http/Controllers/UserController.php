@@ -8,7 +8,8 @@ use App\User;
 class UserController extends Controller
 {
     public function index(){
-    	return view('userLogin');
+        // dd('hi');
+    	return view('userDashboard');
     }
 
     public function userAuth(Request $request)

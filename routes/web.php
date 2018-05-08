@@ -17,17 +17,22 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'user','middleware'=> 'auth'], function () {
 	Route::get('/user_login', ['uses'=>'UserController@index','as'=>'user-login']);	
-	Route::post('/user_dashboard', ['uses'=>'UserController@userAuth','as'=>'user.auth']);	
+	Route::post('/user_login_post', ['uses'=>'UserController@userAuth','as'=>'user.auth']);	
 });
 
-Route::group(['prefix' => 'admin','middleware'=> 'admin'], function () {
-	Route::get('/admin_login', ['uses'=>'AdminController@index','as'=>'admin-login']);	
-	Route::post('/admin_login_post', ['uses'=>'AdminController@adminAuth','as'=>'admin.auth']);	
-});
 
-Route::get('/admin/admin_dashboard', 'AdminController@dashboard');
-Route::get('/logout', 'AdminController@logout');	
+
+/////////////////////////////////////////////ADMIN AUTH ROUTES//////////////////////////////////////
+		Route::group(['prefix' => 'admin','middleware'=> 'admin'], function () {
+			Route::get('/admin_login', ['uses'=>'AdminController@index','as'=>'admin-login']);	
+			Route::post('/admin_login_post', ['uses'=>'AdminController@adminAuth','as'=>'admin.auth']);	
+		});
+		Route::get('/admin/admin_dashboard', 'AdminController@dashboard');
+		Route::get('/logout', 'AdminController@logout');	
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
