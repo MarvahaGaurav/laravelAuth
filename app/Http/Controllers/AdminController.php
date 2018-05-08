@@ -30,13 +30,13 @@ class AdminController extends Controller
     }
 
     public function logout(Request $request){
-        $this->guard()->logout();
-        $request->session()->invalidate();
+        $this->guard('admin')->logout();
         return redirect('/admin/admin_login');
     }
 
-	protected function guard(){
-		return \Auth::guard();
+	
+	protected function guard($guard){
+		return Auth::guard($guard);
 	}
 
 

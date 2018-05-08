@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appUser')
 
 @section('content')
 <div class="container">
@@ -18,10 +18,10 @@
                     Url : {{config('app.url')}}<br>
                     Timezone: {{config('app.timezone')}}<br>
                     key: {{config('app.key')}}<br>
-                    User Name :  {{ Auth::user()->name }}<br>
-                    User Detail :  {{ Auth::user() }}<br>
+                    User Name :  {{ Auth::guard('userPanel')->user()->name }}<br>
+                    User Detail :  {{ Auth::guard('userPanel')->user() }}<br>
                     You are logged in! <br>
-                    <?php print_r(Auth::user()->name)?>
+                    <?php print_r(Auth::guard('userPanel')->user()->name)?>
                 </div>
             </div>
         </div>
